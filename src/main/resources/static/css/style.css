@@ -11,7 +11,7 @@ body, html {
     margin: 0px;
 }
 
-input {
+input, select, textarea {
     margin-bottom: 15px;
     border: 1px solid rgb(198, 198, 198);
     padding: 10px;
@@ -19,7 +19,7 @@ input {
     width: 100%;
 }
 
-input:focus {
+input:focus, select:focus, textarea:focus {
     outline: none;
     border: 1px solid black;
 }
@@ -80,6 +80,7 @@ button {
 
 button:active {
     animation: button-fadein 0.1s linear forwards;
+    color: white;
 }
 
 .black-button {
@@ -108,3 +109,6 @@ ul, li {
     list-style-type: none;
 }
 
+main {
+    margin-top:60px;
+}

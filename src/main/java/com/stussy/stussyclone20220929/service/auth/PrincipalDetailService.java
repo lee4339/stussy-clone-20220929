@@ -1,4 +1,4 @@
-package com.stussy.stussyclone20220929.service;
+package com.stussy.stussyclone20220929.service.auth;
 
 import com.stussy.stussyclone20220929.domain.User;
 import com.stussy.stussyclone20220929.repository.AccountRepository;
@@ -25,8 +25,6 @@ public class PrincipalDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("존재하지 않는 아이디입니다.");
         }
 
-        log.info("email >> {}", email);
-
-        return null;
+        return new PrincipalDetails(user);
     }
 }
