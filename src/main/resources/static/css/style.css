@@ -103,6 +103,11 @@ a:hover {
     text-decoration: underline;
 }
 
+.a-selected {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
 ul, li {
     margin: 0px;
     padding: 0px;
