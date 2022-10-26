@@ -4,18 +4,18 @@ import com.stussy.stussyclone20220929.aop.annotation.LogAspect;
 import com.stussy.stussyclone20220929.aop.annotation.ValidAspect;
 import com.stussy.stussyclone20220929.dto.CMRespDto;
 import com.stussy.stussyclone20220929.dto.admin.ProductAdditionReqDto;
+import com.stussy.stussyclone20220929.dto.admin.ProductModificationReqDto;
 import com.stussy.stussyclone20220929.dto.validation.ValidationSequence;
-import com.stussy.stussyclone20220929.exception.CustomValidationException;
 import com.stussy.stussyclone20220929.service.admin.ProductService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@Slf4j
+import javax.validation.Valid;
+
 @RequestMapping("/api/admin")
 @RestController
 @RequiredArgsConstructor
@@ -28,25 +28,41 @@ public class ProductApi {
     @PostMapping("/product")
     public ResponseEntity<?> addProduct(@Validated(ValidationSequence.class) ProductAdditionReqDto productAdditionReqDto, BindingResult bindingResult) throws Exception {
 
-        String productName = productAdditionReqDto.getName();
-
-//        for(int i = 0; i < 200; i++) {
-//            if(i % 4 == 0) {
-//                productAdditionReqDto.setName(productName + "-" + (i+1));
+//        String productName = productAdditionReqDto.getName();
+//        for(int i = 0; i < 20; i++) {
+//            if(i % 4 == 0){
+//                productAdditionReqDto.setName(productName + "-" + (i + 1));
 //            }
 //            productService.addProduct(productAdditionReqDto);
 //        }
+//        return ResponseEntity
+//                .created(null)
+//                .body(new CMRespDto<>(1, "Successfully", null));
 
         return ResponseEntity
                 .created(null)
-                .body(new CMRespDto<>(1, "Successfully",  null));
+                .body(new CMRespDto<>(1, "Successfully", productService.addProduct(productAdditionReqDto)));
     }
 
     @GetMapping("/products")
-    public ResponseEntity<?> getProductList(@RequestParam int pageNumber,
+    public ResponseEntity<?> getProductList(@RequestParam int page,
                                             @RequestParam @Nullable String category,
-                                            @RequestParam @Nullable String searchText) throws Exception {
+                                            @RequestParam @Nullable String searchValue) throws Exception {
 
-        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", productService.getProductList(pageNumber, category, searchText)));
+        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", productService.getProductList(page, category, searchValue)));
+    }
+
+    @LogAspect
+    @ValidAspect
+    @PostMapping("/product/modification")
+    public ResponseEntity<?> updateProduct(@Valid ProductModificationReqDto productModificationReqDto, BindingResult bindingResult) throws Exception {
+
+        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", productService.updateProduct((productModificationReqDto))));
+    }
+
+    @DeleteMapping("/product/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable int productId) throws Exception {
+
+        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", productService.deleteProduct((productId))));
     }
 }

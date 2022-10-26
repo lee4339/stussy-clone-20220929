@@ -50,7 +50,7 @@ public class Product {
                 .infoOption(info_option)
                 .infoManagement(info_management)
                 .infoShipping(info_shipping)
-                .product_img_files(product_img_files)
+                .productImgFiles(product_img_files)
                 .productTotalCount(product_total_count)
                 .build();
     }

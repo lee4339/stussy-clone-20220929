@@ -24,8 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests() // 모든 요청시에 실행을 해라
 
                 // ---------------Page---------------
-//                .antMatchers("/admin/**")
-//                .access("hasRole('ADMIN') or hasRole('MANAGER')") // "" 권한이 필요
+                .antMatchers("/admin/**", "/api/admin/**")
+                .access("hasRole('ADMIN') or hasRole('MANAGER')") // "" 권한이 필요
                 .antMatchers("/accout") // 해당 요청 주소들은
                 .access("hasRole('USER') or hasRole('ADMIN') or hasRole('MANAGER')")
 
@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()// 모두 접근 권한을 허용해라
 
                 // ---------------Api---------------
-                .antMatchers("/api/account/register")
+                .antMatchers("/api/account/register", "/api/collections/**")
                 .permitAll()
 
                 .anyRequest() // antMatchers 외에 다른 모든 요청에

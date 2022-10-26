@@ -22,7 +22,7 @@ public class ProductListRespDto {
     private String infoManagement;
     private String infoShipping;
 
-    private List<ProductImgFile> product_img_files;
+    private List<ProductImgFile> productImgFiles;
 
     private int productTotalCount;
 }
