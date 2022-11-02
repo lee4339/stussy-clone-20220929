@@ -17,6 +17,7 @@ public class OrderController {
     @LogAspect
     @GetMapping("")
     public String loadOrder(Model model, OrderReqDto orderReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        // @AuthenticationPrincipal -> 세션에 있는 계정
         model.addAttribute("order", orderReqDto);
         model.addAttribute("principalUser", principalDetails.getUser());
         return "order/order";

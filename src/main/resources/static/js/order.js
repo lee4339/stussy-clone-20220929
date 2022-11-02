@@ -45,40 +45,11 @@ class ImportApi {
     responsePay(resp) {
         if(resp.success) {
             alert("결제 성공!");
-            this.requestPayDetails();
         }else {
             alert("결제 실패!");
         }
     }
 
-    requestImpAccessToken() {
-        const accessToken = null;
-
-        $.ajax({
-            async: false,
-            type: "post",
-            url: "https://api.iamport.kr/users/getToken",
-            contentType: "application/json",
-            data: JSON.stringify({
-                imp_key: this.impInfo.restApiKey,
-                imp_secret: this.impInfo.restApiSecret
-            }),
-            dataType: "json",
-            success: (response) => {
-                accessToken = response;
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
-
-        return accessToken;
-    }
-
-    requestPayDetails() {
-        const accessToken = this.requestImpAccessToken();
-        console.log(accessToken);
-    }
 }
 
 class Order {
