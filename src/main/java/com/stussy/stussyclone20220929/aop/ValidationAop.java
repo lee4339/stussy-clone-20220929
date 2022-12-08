@@ -1,16 +1,12 @@
 package com.stussy.stussyclone20220929.aop;
 
-import com.stussy.stussyclone20220929.dto.CMRespDto;
 import com.stussy.stussyclone20220929.exception.CustomValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
